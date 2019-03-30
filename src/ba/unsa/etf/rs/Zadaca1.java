@@ -20,7 +20,21 @@ class Zadaca1  {
         return niz[store - 1];                                                                // Vraca drzavu
         }
 
-  //  public static void najvecaSuma(int[] x){ //zadatak 1 - b)}
+    public static int najvecaSuma(int[] niz, int x){ //zadatak 1 - b)
+       int suma = 0, max = 0, temp = 0, i, n;
+
+        for (i = 0; i < x; i++){
+            n = niz[i];
+            while ( n > 0 ) {
+                suma = suma + (n % 10);
+                n = n / 10;
+            }
+            if (suma > max){ max = suma; temp = i;}
+            suma = 0;
+        }
+        return niz[temp];
+
+    }
 
  //   public static void najmanjaSrednjaVrijednost{ }
 
@@ -49,7 +63,14 @@ class Zadaca1  {
 
         System.out.println("Unesite članove niza cijelih brojeva (0 za kraj): "); //zadatak 1 - b)
 
+        int niz_cj_br[] = new int[100], x;
 
+        for (x = 0; x < 100 ; x++){
+            niz_cj_br[x] = ulaz.nextInt();
+            if(niz_cj_br[x] == 0) break;
+        }
+
+        System.out.println("Broj sa najvećom sumom cifara je: " + najvecaSuma(niz_cj_br, x));
 
     }
 
