@@ -36,7 +36,27 @@ class Zadaca1  {
 
     }
 
- //   public static void najmanjaSrednjaVrijednost{ }
+    public static Double[] najmanjaSrednjaVrijednost(Double[][] niz){
+
+        double min = srednjaVrijednost(niz[0]);
+        int temp = 0;
+
+        for (int i = 0; i < niz.length; i++){
+            if (min > srednjaVrijednost(niz[i])){
+                min = srednjaVrijednost(niz[i]);
+                temp = i;
+            }
+        }
+        return niz[temp];
+    }
+
+    public static Double srednjaVrijednost(Double[] niz){                                    //Dodao jos jedan module reda radi
+
+        double se_vr = 0;
+        for (int i = 0; i < niz.length; i++) se_vr = se_vr + niz[i];
+       // System.out.println(se_vr + " " + se_vr/niz.length);
+        return (se_vr / niz.length);
+    }
 
     public static void main(String[] args) {
         Scanner ulaz = new Scanner(System.in);
@@ -72,6 +92,19 @@ class Zadaca1  {
 
         System.out.println("Broj sa najvećom sumom cifara je: " + najvecaSuma(niz_cj_br, x));
 
-    }
+        System.out.println("Unesite broj redova matrice: ");
+        Double matica[][] = new Double[ulaz.nextInt()][];
 
+        for (int i = 0; i < matica.length; i++) {
+            System.out.println("Unesite broj elemenata u "+ (i + 1) + ". redu: ");                  // +1 jer array pocinje sa 0
+            matica[i] = new Double[ulaz.nextInt()];
+            System.out.println("Unesite elemente: ");
+            for (int j = 0; j < matica[i].length; j++) matica[i][j] = ulaz.nextDouble();
+        }
+
+        Double[] nsV = najmanjaSrednjaVrijednost(matica);                                           //nsV = najmanja srednja Vrijednost
+
+        System.out.println("Red sa najmanjom srednjom vrijednošću glasi: ");
+        for (int i = 0; i < nsV.length; i++) System.out.println(nsV[i]);
+    }
 }
